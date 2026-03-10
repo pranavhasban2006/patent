@@ -1,5 +1,5 @@
 // we'll use lucide icons uniformly
-import { UploadCloud, Play, Search, FileCode2, Database } from 'lucide-react';
+import { Play, Search, FileCode2, Database } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function InputPanel({
@@ -86,8 +86,8 @@ export default function InputPanel({
                     onClick={onAnalyze}
                     disabled={isAnalyzing || !sourceCode.trim() || !changedElementId.trim()}
                     className={`w-full py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 transition-all ${isAnalyzing || !sourceCode.trim() || !changedElementId.trim()
-                            ? 'bg-slate-700 text-slate-400 cursor-not-allowed'
-                            : 'bg-gradient-to-r from-indigo-500 to-violet-600 hover:from-indigo-400 hover:to-violet-500 text-white shadow-lg shadow-indigo-500/25'
+                        ? 'bg-slate-700 text-slate-400 cursor-not-allowed'
+                        : 'bg-gradient-to-r from-indigo-500 to-violet-600 hover:from-indigo-400 hover:to-violet-500 text-white shadow-lg shadow-indigo-500/25'
                         }`}
                 >
                     {isAnalyzing ? (
