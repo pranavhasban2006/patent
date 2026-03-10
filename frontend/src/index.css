@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --color-slate-900: #0f172a;
+  --color-slate-800: #1e293b;
+  --color-slate-700: #334155;
+  --color-slate-100: #f1f5f9;
+  --color-blue-600: #2563eb;
+  --color-indigo-600: #4f46e5;
+  --color-violet-600: #7c3aed;
+  
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+body {
+  @apply bg-slate-900 text-slate-100 font-sans antialiased;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom scrollbar for sleeker look */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-700 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-600;
+}
+
+/* Glassmorphism utility */
+.glass {
+  @apply bg-slate-800/80 backdrop-blur-md border border-slate-700/50;
+}
+
+/* React Flow custom node styles */
+.react-flow__node {
+  @apply rounded-xl shadow-lg border-2 border-slate-700 bg-slate-800 text-slate-100 font-medium;
+  padding: 12px 20px;
+  min-width: 150px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+.react-flow__node:hover {
+  @apply border-indigo-500 shadow-indigo-500/20 shadow-xl;
+  transform: translateY(-2px);
+}
+.react-flow__node.selected {
+  @apply border-indigo-500 ring-2 ring-indigo-500/50;
+}
+.react-flow__handle {
+  @apply w-3 h-3 bg-indigo-500 border-2 border-slate-800;
+}
+
+.react-flow__edge-path {
+  stroke: #64748b;
+  stroke-width: 2;
+}
+.react-flow__edge.animated .react-flow__edge-path {
+  stroke: #818cf8;
+  stroke-dasharray: 5;
+  animation: dashdraw 1s linear infinite;
+}
+
+@keyframes dashdraw {
+  from { stroke-dashoffset: 10; }
+}
