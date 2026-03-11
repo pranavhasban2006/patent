@@ -34,9 +34,15 @@ export default function App() {
       const res = await axios.get(`${API_BASE}/demo-data`);
       setSourceCode(res.data.code);
       setChangedElementId('func_getUser'); // preselect a demo change
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
-      setError("Failed to load demo data. Is backend running?");
+      let errMsg = "Failed to load demo data. Is backend running?";
+      if (err.response?.data?.error) {
+        errMsg = typeof err.response.data.error === 'string' 
+          ? err.response.data.error 
+          : JSON.stringify(err.response.data.error);
+      }
+      setError(errMsg);
     }
   };
 
@@ -62,12 +68,20 @@ export default function App() {
       });
 
       if (res.data.error) {
-        setError(res.data.error);
+        setError(typeof res.data.error === 'string' ? res.data.error : JSON.stringify(res.data.error));
       } else {
         setResult(res.data);
       }
     } catch (err: any) {
-      setError(err.response?.data?.error || err.message || "Network Error: Could not reach the server.");
+      let errMsg = "Network Error: Could not reach the server.";
+      if (err.response?.data?.error) {
+        errMsg = typeof err.response.data.error === 'string' 
+          ? err.response.data.error 
+          : JSON.stringify(err.response.data.error);
+      } else if (err.message) {
+        errMsg = err.message;
+      }
+      setError(errMsg);
     } finally {
       setIsAnalyzing(false);
     }
